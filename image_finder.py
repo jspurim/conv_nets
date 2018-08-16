@@ -12,7 +12,7 @@ args = parser.parse_args()
 
 service = build("customsearch", "v1", developerKey=args.key)
 
-def getImages(query, s):
+def get_images(query, s):
     resp = service.cse().list(q=query, cx=args.gcse, num=10, start=s, searchType="image", imgType="photo", imgColorType="color").execute()
     items = resp.items()
     results = None
@@ -29,7 +29,7 @@ imgLinks = []
 
 s = 1
 while len(imgLinks) < n:
-    results = getImages(query, s)
+    results = get_images(query, s)
     s += 10
     imgLinks = imgLinks + results
 
